@@ -27,8 +27,7 @@ RUN poetry install --no-root --only main --no-interaction --no-ansi
 FROM python:3.13-slim AS final
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    DUCKDB_PATH=cache/data.duck_db
+    PYTHONUNBUFFERED=1
 
 # Create an unprivileged user in advance to avoid permission issues
 RUN groupadd -g 10000 shrimp && \
