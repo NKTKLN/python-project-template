@@ -1,0 +1,59 @@
+fail_fast: true
+exclude: '^(tests|docs)/'
+
+repos:
+  - repo: local
+    hooks:
+      - id: poetry-check
+        name: Poetry check and install
+        entry: bash -c "poetry check && poetry lock && poetry install --no-root"
+        language: system
+        pass_filenames: false
+
+      - id: black
+        name: Black formatter
+        entry: poetry run black .
+        language: system
+        pass_filenames: false
+
+      - id: isort
+        name: isort import sorting
+        entry: poetry run isort . --profile black
+        language: system
+        pass_filenames: false
+
+      - id: ruff
+        name: Ruff check
+        entry: poetry run ruff check .
+        language: system
+        pass_filenames: false
+
+      - id: mypy
+        name: Mypy type check
+        entry: poetry run mypy .
+        language: system
+        pass_filenames: false
+
+      - id: interrogate
+        name: Interrogate docstring coverage
+        entry: poetry run interrogate .
+        language: system
+        pass_filenames: false
+      
+      - id: vulture
+        name: Vulture dead code detection
+        entry: poetry run vulture .
+        language: system
+        pass_filenames: false
+      
+      - id: pylint
+        name: Pylint static analysis
+        entry: poetry run pylint --jobs=4 .
+        language: system
+        pass_filenames: false
+
+      - id: pip-audit
+        name: Pip audit for vulnerabilities
+        entry: poetry run pip-audit --ignore-vuln PYSEC-2022-42969
+        language: system
+        pass_filenames: false

@@ -1,0 +1,107 @@
+[project]
+name = "python-project-template"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "NKTKLN",email = "nktkln@nktkln.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.11.6"
+mypy = "^1.15.0"
+pre-commit = "^4.2.0"
+interrogate = "^1.7.0"
+vulture = "^2.14"
+pip-audit = "^2.9.0"
+black = "^25.1.0"
+pytest = "^8.4.1"
+deptry = "^0.23.0"
+isort = "^6.0.1"
+pylint = "^3.3.7"
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+exclude = '''
+/(
+    \.git
+  | \.venv
+  | build
+  | dist
+  | __pycache__
+  | tmp
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint]
+ignore = ["E203", "D100"]
+select = ["E", "F", "W", "C90", "B", "B9", "I", "D", "S"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+disallow_untyped_defs = true
+disallow_any_unimported = true
+disallow_incomplete_defs = true
+disallow_untyped_calls = true
+strict_optional = true
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+warn_unreachable = true
+pretty = true
+show_error_codes = true
+exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
+
+[tool.interrogate]
+fail-under = 90
+exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
+ignore-init-method = true
+ignore-init-module = true
+ignore-magic = true
+ignore-semiprivate = true
+ignore-private = true
+verbose = 1
+color = true
+
+[tool.vulture]
+exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
+
+[tool.pylint]
+disable = ["logging-fstring-interpolation", "use-dict-literal"]
+max-line-length = 88
+max-module-lines = 500
+good-names = ["i", "j", "k", "ex", "_"]
+const-rgx = "[A-Z_][A-Z0-9_]*"
+variable-rgx = "[a-z_][a-z0-9_]*"
+class-rgx = "[A-Z][a-zA-Z0-9]*"
+function-rgx = "[a-z_][a-z0-9_]*"
+method-rgx = "[a-z_][a-z0-9_]*"
+ignore = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
+
+[tool.pylint.format]
+max-line-length = 88
