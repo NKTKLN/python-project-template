@@ -9,6 +9,12 @@ repos:
         language: system
         pass_filenames: false
 
+      - id: docformatter   
+        name: Docstring formatter   
+        entry: poetry run docformatter -r -i .
+        language: system
+        pass_filenames: false
+
       - id: black
         name: Black formatter
         entry: poetry run black .
