@@ -53,7 +53,8 @@ tasks:
     desc: Code formatting with black and ruff
     deps: [code-upgrade]
     cmds:
-      - poetry run docformatter -r -i .
+      - cmd: poetry run docformatter .
+        ignore_error: true
       - poetry run black .
       - poetry run isort . --profile black
 

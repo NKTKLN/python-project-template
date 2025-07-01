@@ -11,7 +11,7 @@ repos:
 
       - id: docformatter   
         name: Docstring formatter   
-        entry: poetry run docformatter -r -i .
+        entry: poetry run docformatter .
         language: system
         pass_filenames: false
 

@@ -114,20 +114,14 @@ py312-plus = true
 
 [tool.docformatter]
 wrap-summaries = 88
-make-summary-multi-line = true
+wrap-descriptions = 88
+make-summary-multi-line = false
 pre-summary-newline = false
-in-place = true
+black = true
 docstring-quotes = '"""'
-exclude = '''
-(
-  \.git/.*|
-  __pycache__/.*|
-  build/.*|
-  dist/.*|
-  \.venv/.*|
-  tmp/.*
-)
-'''
+in-place = true
+recursive = true
+exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
