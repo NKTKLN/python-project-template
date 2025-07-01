@@ -38,6 +38,7 @@ tasks:
 
   code-upgrade:
     desc: Updates code syntax to newer versions
+    platforms: [linux, darwin]
     cmds:
       - find . -type f -name "*.py"
         ! -path "./.git/*"
