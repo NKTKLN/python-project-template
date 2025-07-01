@@ -11,6 +11,31 @@ tasks:
     cmds:
       - poetry run pre-commit install
 
+  init:
+    desc: Full project setup — install deps, configure pre-commit and Commitizen
+    deps: [install, precommit, commitizen]
+
+  cz-commit:
+    desc: Create a commit using Commitizen (Conventional Commits standard)
+    cmds:
+      - poetry run cz commit
+
+  cz-check:
+    desc: Check if commit messages follow Conventional Commits
+    cmds:
+      - poetry run cz check
+
+  cz-bump:
+    desc: Bump version, tag, and update changelog using Commitizen
+    cmds:
+      - poetry run cz bump
+
+  release:
+    desc: Bump version and push tags (run after merge to main)
+    cmds:
+      - poetry run cz bump
+      - git push --follow-tags
+
   code-upgrade:
     desc: Updates code syntax to newer versions
     cmds:

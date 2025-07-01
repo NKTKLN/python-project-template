@@ -28,6 +28,7 @@ deptry = "^0.23.0"
 isort = "^6.0.1"
 pylint = "^3.3.7"
 pyupgrade-directories = "^0.3.0"
+commitizen = "^4.8.3"
 
 [tool.black]
 line-length = 88
@@ -109,3 +110,11 @@ max-line-length = 88
 
 [tool.pyupgrade]
 py312-plus = true
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "$version"
+version_scheme = "pep440"
+version_provider = "poetry"
+update_changelog_on_bump = true
+major_version_zero = true
