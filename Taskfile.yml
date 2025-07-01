@@ -11,8 +11,21 @@ tasks:
     cmds:
       - poetry run pre-commit install
 
+  code-upgrade:
+    desc: Updates code syntax to newer versions
+    cmds:
+      - find . -type f -name "*.py"
+        ! -path "./.git/*"
+        ! -path "./__pycache__/*"
+        ! -path "./build/*"
+        ! -path "./dist/*"
+        ! -path "./.venv/*"
+        ! -path "./tmp/*"
+        -exec poetry run pyupgrade {} +
+
   format:
     desc: Code formatting with black and ruff
+    deps: [code-upgrade]
     cmds:
       - poetry run black .
       - poetry run isort . --profile black
