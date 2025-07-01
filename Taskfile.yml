@@ -53,12 +53,8 @@ tasks:
     desc: Code formatting with black and ruff
     deps: [code-upgrade]
     cmds:
-      - cmd: poetry run docformatter .
-        ignore_error: true
-      - poetry run isort .
-      - poetry run autoflake --remove-all-unused-imports --remove-unused-variables --in-place .
+      - poetry run ruff check . --fix
       - poetry run black .
-      - poetry run isort . --profile black
 
   lint:
     desc: Static code analysis with ruff and mypy

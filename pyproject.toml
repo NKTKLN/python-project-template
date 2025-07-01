@@ -25,12 +25,9 @@ pip-audit = "^2.9.0"
 black = "^25.1.0"
 pytest = "^8.4.1"
 deptry = "^0.23.0"
-isort = "^6.0.1"
 pylint = "^3.3.7"
 pyupgrade-directories = "^0.3.0"
 commitizen = "^4.8.3"
-docformatter = "^1.7.7"
-autoflake = "^2.3.1"
 
 [tool.black]
 line-length = 88
@@ -112,29 +109,6 @@ max-line-length = 88
 
 [tool.pyupgrade]
 py312-plus = true
-
-[tool.docformatter]
-wrap-summaries = 88
-wrap-descriptions = 88
-make-summary-multi-line = false
-pre-summary-newline = false
-black = true
-docstring-quotes = '"""'
-in-place = true
-recursive = true
-exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
-
-[tool.isort]
-profile = "black"
-line_length = 88
-skip = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
-
-[tool.autoflake]
-in_place = true
-recursive = true
-remove_all_unused_imports = true
-ignore_init_module_imports = true
-exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
