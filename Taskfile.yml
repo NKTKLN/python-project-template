@@ -55,6 +55,8 @@ tasks:
     cmds:
       - cmd: poetry run docformatter .
         ignore_error: true
+      - poetry run isort .
+      - poetry run autoflake --remove-all-unused-imports --remove-unused-variables --in-place .
       - poetry run black .
       - poetry run isort . --profile black
 

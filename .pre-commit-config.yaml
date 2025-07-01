@@ -15,6 +15,18 @@ repos:
         language: system
         pass_filenames: false
 
+      - id: autoflake   
+        name: Autoflake formatter   
+        entry: poetry run autoflake --remove-all-unused-imports --remove-unused-variables --in-place .
+        language: system
+        pass_filenames: false
+
+      - id: isort   
+        name: Isort formatter   
+        entry: poetry run isort .
+        language: system
+        pass_filenames: false
+
       - id: black
         name: Black formatter
         entry: poetry run black .
