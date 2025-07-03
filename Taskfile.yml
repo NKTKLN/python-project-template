@@ -12,8 +12,8 @@ tasks:
       - poetry run pre-commit install
 
   init:
-    desc: Full project setup — install deps, configure pre-commit and Commitizen
-    deps: [install, precommit, commitizen]
+    desc: Full project setup — install deps, configure pre-commit
+    deps: [install, precommit]
 
   cz-commit:
     desc: Create a commit using Commitizen (Conventional Commits standard)
