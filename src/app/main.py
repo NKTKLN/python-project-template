@@ -1,4 +1,4 @@
-"""Main entry point for the my_project application."""
+"""Main entry point for the application."""
 
 
 def main() -> None:

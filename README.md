@@ -1,125 +1,141 @@
 # 🐍 Python Project Template
 
-**python-project-template** is a starter template for Python projects with advanced setup for code quality tools, static analysis, formatting, documentation checks, and dependency security auditing.
+**python-project-template** is a starter template for Python projects with advanced setup for code quality tools, static analysis, formatting, testing, coverage control, dependency security auditing, and release automation.
 
-This template includes configurations for `poetry`, `ruff`, `black`, `mypy`, `pylint`, `pre-commit`, and other popular tools, along with a ready-to-use `Taskfile.yml` for convenient task management.
+This template uses modern tooling such as `uv`, `ruff`, `mypy`, `pytest`, `pre-commit`, `commitizen`, and `hatchling`, along with a ready-to-use `Taskfile.yml` for convenient task management.
 
 ## 📦 Dependencies
 
-* [Python 3.12+](https://www.python.org/downloads/)
-* [Poetry](https://python-poetry.org/docs/#installation)
-* [Docker](https://docs.docker.com/get-docker/) (optional)
-* [Task](https://taskfile.dev/) (optional)
+* [Python 3.13+](https://www.python.org/downloads/)
+* [uv](https://docs.astral.sh/uv/getting-started/installation/)
+* [commitizen](https://commitizen-tools.github.io/commitizen/#installation)
+* [Docker](https://docs.docker.com/get-docker/)
+* [Task](https://taskfile.dev/)
 
 ## ⚙️ Configuration & Features
 
 The project comes pre-configured with:
 
-* Code formatting via `black`, `isort`, `ruff`
-* Static code analysis using `ruff`, `mypy`, `pylint`
-* Docstring style checks via `interrogate`
-* Dead code detection with `vulture`
-* Dependency vulnerability auditing using `pip-audit`
-* Unused library checks via `deptry`
-* `pre-commit` hooks setup for Git
+* Code formatting and linting via `ruff`
+* Static type checking via `mypy`
+* Testing with `pytest`
+* Coverage reporting via `coverage`
+* Security auditing via `pip-audit`
+* Unused dependency detection via `deptry`
+* Conventional commits & versioning via `commitizen`
+* Git hooks via `pre-commit`
+* Packaging with `hatchling`
+* Dependency management via `uv`
 
-All settings target Python 3.12+ with a max line length of 88 characters.
+All settings target **Python 3.13** with a max line length of 88 characters.
 
 ## 🛠️ Installation & Usage
 
 ### 💻 Local Setup
 
-1. Make sure you have Python 3.12 or newer installed.
+1. Make sure you have **Python 3.13 or newer** installed.
 
-2. Install dependencies:
+2. Sync dependencies (including dev group):
 
-   ```bash
-   poetry install --no-root
-   ```
+```bash
+task sync
+```
 
-3. Install Git hooks via pre-commit:
+3. Install Git hooks:
 
-   ```bash
-   poetry run pre-commit install
-   ```
+```bash
+task init
+```
 
 4. Run the application (example module `app.main`):
 
-   ```bash
-   poetry run python -m app.main
-   ```
+```bash
+task run
+```
 
-### 🐳 Running with Docker
+## 🐳 Docker
 
-1. Build the Docker image:
+Build image:
 
-   ```bash
-   docker build -t python-app .
-   ```
+```bash
+task docker-build
+```
 
-2. Run the container:
+Run container:
 
-   ```bash
-   docker run -it --rm python-app
-   ```
+```bash
+task docker-run
+```
 
-### 🤖 Using Taskfile
+Build and run:
 
-To simplify project tasks, you can use the included `Taskfile.yml`:
+```bash
+task docker
+```
 
-* Install dependencies:
+## 🧪 Development Commands
 
-  ```bash
-  task install
-  ```
+Auto-fix lint issues and format code:
 
-* Format code:
+```bash
+task fmt
+```
 
-  ```bash
-  task format
-  ```
+Run Ruff and MyPy:
 
-* Run linting and static analysis:
+```bash
+task lint
+```
 
-  ```bash
-  task lint
-  ```
+Tests with Coverage:
 
-* Check docstring style:
+```bash
+task test
+```
 
-  ```bash
-  task docstyle
-  ```
+Security audit:
 
-* Find dead code:
+```bash
+task audit
+```
 
-  ```bash
-  task deadcode
-  ```
+Detect unused libraries:
 
-* Audit dependencies for vulnerabilities:
+```bash
+task unused-libs
+```
 
-  ```bash
-  task audit
-  ```
+Full Quality Check:
 
-* Run full check (formatting, linting, auditing, etc.):
+```bash
+task check
+```
 
-  ```bash
-  task check
-  ```
+## 🚀 Release Management
 
-* Run the application:
+Commit using Conventional Commits:
 
-  ```bash
-  task run
-  ```
+```bash
+task cz-commit
+```
 
-* Build and run Docker container:
+Check commit messages:
 
-  ```bash
-  task docker
-  ```
+```bash
+task cz-check
+```
+
+Bump version and update changelog:
+
+```bash
+task cz-bump
+```
+
+Release (bump + push tags):
+
+```bash
+task release
+```
 
 ## 📜 License
 

@@ -1,62 +1,33 @@
 exclude: ^(tests|docs)/
 fail_fast: true
 repos:
-  - repo: local
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
     hooks:
-      - id: poetry-check
-        name: Poetry check and install
-        entry: bash -c "poetry check && poetry lock && poetry install --no-root"
-        language: system
-        pass_filenames: false
+      - id: check-yaml
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+      - id: check-merge-conflict
 
-      - id: black
-        name: Black formatter
-        entry: poetry run black .
-        language: system
-        pass_filenames: false
+  - repo: https://github.com/astral-sh/uv-pre-commit
+    rev: 0.10.2
+    hooks:
+      - id: uv-lock
 
-      - id: isort
-        name: isort import sorting
-        entry: poetry run isort . --profile black
-        language: system
-        pass_filenames: false
-
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.1
+    hooks:
       - id: ruff
-        name: Ruff check
-        entry: poetry run ruff check .
-        language: system
-        pass_filenames: false
+        args: ["--fix"]
+      - id: ruff-format
 
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.19.1
+    hooks:
       - id: mypy
-        name: Mypy type check
-        entry: poetry run mypy .
-        language: system
-        pass_filenames: false
 
-      - id: interrogate
-        name: Interrogate docstring coverage
-        entry: poetry run interrogate .
-        language: system
-        pass_filenames: false
-      
-      - id: vulture
-        name: Vulture dead code detection
-        entry: poetry run vulture .
-        language: system
-        pass_filenames: false
-      
-      - id: pylint
-        name: Pylint static analysis
-        entry: poetry run pylint --jobs=4 .
-        language: system
-        pass_filenames: false
-
-      - id: pip-audit
-        name: Pip audit for vulnerabilities
-        entry: poetry run pip-audit --ignore-vuln PYSEC-2022-42969
-        language: system
-        pass_filenames: false
-  
   - hooks:
     - id: commitizen
     - id: commitizen-branch
