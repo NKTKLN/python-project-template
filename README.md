@@ -2,7 +2,7 @@
 
 **python-project-template** is a starter template for Python projects with advanced setup for code quality tools, static analysis, formatting, testing, coverage control, dependency security auditing, and release automation.
 
-This template uses modern tooling such as `uv`, `ruff`, `mypy`, `pytest`, `pre-commit`, `commitizen`, and `hatchling`, along with a ready-to-use `Taskfile.yml` for convenient task management.
+This template uses modern tooling such as `uv`, `ruff`, `mypy`, `pytest`, `pre-commit`, `commitizen`, `hatchling` and `gitleaks`, along with a ready-to-use `Taskfile.yml` for convenient task management.
 
 ## 📦 Dependencies
 
@@ -24,6 +24,7 @@ The project comes pre-configured with:
 * Unused dependency detection via `deptry`
 * Conventional commits & versioning via `commitizen`
 * Git hooks via `pre-commit`
+* Secret scanning via `gitleaks`
 * Packaging with `hatchling`
 * Dependency management via `uv`
 
