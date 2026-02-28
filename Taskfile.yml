@@ -47,8 +47,8 @@ tasks:
     desc: Auto-fix lint issues and format code
     deps: [sync]
     cmds:
-      - uv run ruff check . --fix --unsafe-fixes
       - uv run ruff format .
+      - uv run ruff check . --fix --unsafe-fixes
 
   # ======== Static analysis ========
   lint:
