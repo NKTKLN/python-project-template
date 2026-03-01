@@ -5,7 +5,7 @@ tasks:
   sync:
     desc: Sync dependencies (dev group) using uv
     cmds:
-      - uv sync --group dev
+      - uv sync
 
   precommit:
     desc: Install git hooks
