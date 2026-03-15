@@ -64,7 +64,7 @@ tasks:
     desc: Security audit
     deps: [sync]
     cmds:
-      - poetry run pip-audit --ignore-vuln PYSEC-2022-42969
+      - uv run pip-audit --ignore-vuln PYSEC-2022-42969
 
   unused-libs:
     desc: Detect unused dependencies
