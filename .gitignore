@@ -8,7 +8,7 @@ __pycache__/
 *.so
 
 # ========================
-# Poetry & Virtual Envs
+# Virtual Envs
 # ========================
 .env
 .venv/
