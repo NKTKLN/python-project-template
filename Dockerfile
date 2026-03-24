@@ -18,13 +18,13 @@ COPY pyproject.toml uv.lock ./
 
 # Create venv + install prod deps (locked, without dev)
 RUN uv venv /opt/venv \
-    && uv sync --frozen --no-dev
+    && uv sync --frozen --no-dev --no-install-project
 
 # Copy source code after deps to keep caching efficient
 COPY . .
 
 # Install your package into the venv (so `python -m app.main` works)
-RUN uv pip install .
+RUN uv sync --frozen --no-dev
 
 # ===== Stage 2: Final =====
 FROM python:3.13-slim AS final
