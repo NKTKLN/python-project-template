@@ -1,5 +1,5 @@
 [project]
-name = "python-project-template"
+name = "app"
 version = "0.1.0"
 description = "A Python project starter template with pre-configured tools"
 authors = [{ name = "NKTKLN", email = "nktkln@nktkln.com" }]
@@ -94,6 +94,9 @@ parallel = true
 show_missing = true
 skip_covered = true
 fail_under = 90
+
+[tool.deptry]
+known_first_party = ["app"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"

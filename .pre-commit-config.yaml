@@ -17,25 +17,25 @@ repos:
       - id: gitleaks
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.10.7
+    rev: 0.11.11
     hooks:
       - id: uv-lock
+        files: ^(pyproject\.toml|uv\.lock)$
+        stages: [pre-commit]
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.15.4
+    rev: v0.15.12
     hooks:
       - id: ruff
         args: ["--fix"]
+        stages: [pre-commit]
       - id: ruff-format
+        stages: [pre-commit]
 
-  - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.19.1
-    hooks:
-      - id: mypy
-
-  - hooks:
-    - id: commitizen
-    - id: commitizen-branch
-      stages: [pre-push]
-    repo: https://github.com/commitizen-tools/commitizen
+  - repo: https://github.com/commitizen-tools/commitizen
     rev: v4.13.9
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+      - id: commitizen-branch
+        stages: [pre-push]

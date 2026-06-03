@@ -5,96 +5,133 @@ tasks:
   sync:
     desc: Sync dependencies (dev group) using uv
     cmds:
-      - uv sync
+      - uv sync --all-groups
 
-  precommit:
-    desc: Install git hooks
-    deps: [sync]
+  sync-frozen:
+    desc: Sync dependencies using locked versions
     cmds:
-      - uv run pre-commit install
+      - uv sync --frozen --all-groups
 
   init:
     desc: Full project setup
-    deps: [sync, precommit]
+    cmds:
+      - task: sync
+      - task: precommit
+
+  # ======== Pre-commit ========
+  precommit:
+    desc: Install git hooks
+    cmds:
+      - uv run pre-commit install --install-hooks
+
+  precommit-run:
+    desc: Run pre-commit on all files
+    cmds:
+      - uv run pre-commit run --all-files
 
   # ======== Commitizen ========
   cz-commit:
     desc: Commit using Conventional Commits
-    deps: [sync]
     cmds:
       - uv run cz commit
 
   cz-check:
     desc: Check commit messages
-    deps: [sync]
     cmds:
       - uv run cz check
-
-  cz-bump:
-    desc: Bump version and update changelog
-    deps: [sync]
-    cmds:
-      - uv run cz bump
-
-  release:
-    desc: Bump version and push tags
-    deps: [cz-bump]
-    cmds:
-      - git push --follow-tags
 
   # ======== Formatting ========
   fmt:
     desc: Auto-fix lint issues and format code
-    deps: [sync]
+    cmds:
+      - uv run ruff format .
+      - uv run ruff check . --fix
+
+  fmt-unsafe:
+    desc: Auto-fix lint issues using unsafe fixes and format code
     cmds:
       - uv run ruff format .
       - uv run ruff check . --fix --unsafe-fixes
 
+  fmt-check:
+    desc: Check code formatting
+    cmds:
+      - uv run ruff format --check .
+
   # ======== Static analysis ========
-  lint:
-    desc: Run Ruff and MyPy
-    deps: [sync]
+  ruff:
+    desc: Run Ruff lint
     cmds:
       - uv run ruff check .
-      - uv run ruff format --check .
+
+  typecheck:
+    desc: Run MyPy
+    cmds:
       - uv run mypy .
+
+  lint:
+    desc: Run Ruff and MyPy
+    cmds:
+      - task: ruff
+      - task: fmt-check
+      - task: typecheck
 
   # ======== Dependency hygiene ========
   audit:
     desc: Security audit
-    deps: [sync]
     cmds:
       - uv run pip-audit --ignore-vuln PYSEC-2022-42969
 
   unused-libs:
     desc: Detect unused dependencies
-    deps: [sync]
     cmds:
       - uv run deptry .
 
   # ======== Full quality gate ========
   check:
     desc: Run full quality checks
-    deps: [lint, audit, unused-libs]
+    cmds:
+      - task: lint
+      - task: test-cov
+      - task: build
+      - task: audit
+      - task: unused-libs
+
+  ci:
+    desc: Run CI checks locally
+    cmds:
+      - task: lint
+      - task: test-cov
+      - task: build
+
+  ci-frozen:
+    desc: Run CI checks with locked dependencies
+    cmds:
+      - task: sync-frozen
+      - task: lint
+      - task: test-cov
+      - task: build
 
   # ======== Tests ========
   test:
+    desc: Run tests
+    cmds:
+      - uv run pytest
+
+  test-cov:
     desc: Run tests with coverage
-    deps: [sync]
     cmds:
       - uv run pytest --cov --cov-report=term-missing --cov-report=xml
 
   # ======== Run app ========
   run:
     desc: Run the application
-    deps: [sync]
     cmds:
       - uv run python -m app.main
 
   # ======== Build ========
   build:
     desc: Build package (wheel + sdist)
-    deps: [sync]
     cmds:
       - uv build
 
@@ -111,4 +148,6 @@ tasks:
 
   docker:
     desc: Build and run Docker
-    deps: [docker-build, docker-run]
+    cmds:
+      - task: docker-build
+      - task:  docker-run
