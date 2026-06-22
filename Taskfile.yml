@@ -80,7 +80,7 @@ tasks:
   audit:
     desc: Security audit
     cmds:
-      - uv run pip-audit --ignore-vuln PYSEC-2022-42969
+      - uv run pip-audit
 
   unused-libs:
     desc: Detect unused dependencies
