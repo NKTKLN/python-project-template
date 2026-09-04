@@ -45,7 +45,7 @@ exclude = [
 line-length = 88
 target-version = "py313"
 extend-include = ["*.ipynb"]
-exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
+exclude = [".git", ".claude", "__pycache__", "build", "dist", ".venv", "tmp"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -83,7 +83,7 @@ disallow_any_unimported = true
 no_implicit_optional = true
 strict_optional = true
 disallow_untyped_calls = true
-exclude = [".git", "__pycache__", "build", "dist", ".venv", "tmp"]
+exclude = [".git", ".claude", "__pycache__", "build", "dist", ".venv", "tmp"]
 
 [tool.coverage.run]
 branch = true
@@ -94,9 +94,11 @@ parallel = true
 show_missing = true
 skip_covered = true
 fail_under = 90
+exclude_also = ['if __name__ == "__main__":']
 
 [tool.deptry]
 known_first_party = ["app"]
+extend_exclude = ["\\.claude"]
 
 [tool.commitizen]
 name = "cz_conventional_commits"
