@@ -1,4 +1,4 @@
-exclude: ^(tests|docs)/
+exclude: ^(tests/|docs/|\.claude/|\.codex/)
 fail_fast: true
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
