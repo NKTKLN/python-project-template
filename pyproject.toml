@@ -89,7 +89,6 @@ exclude = [".git", ".claude", ".codex", "__pycache__", "build", "dist", ".venv",
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-norecursedirs = [".claude", ".codex", ".git", ".venv", "build", "dist", "tmp"]
 
 [tool.coverage.run]
 branch = true
